@@ -1,20 +1,34 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <CurrencySelector :currencies="currencies" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "./components/HelloWorld.vue";
+import { Vue } from "vue-property-decorator";
+import CurrencySelector from "./components/CurrencySelector.vue";
 
-@Component({
+const currencies: string[] = [
+  "eur",
+  "pln",
+  "gel",
+  "dkk",
+  "czk",
+  "gbp",
+  "sek",
+  "usd",
+  "rub",
+];
+
+export default Vue.extend({
+  name: "App",
   components: {
-    HelloWorld,
+    CurrencySelector,
   },
-})
-export default class App extends Vue {}
+  data: () => ({
+    currencies,
+  }),
+});
 </script>
 
 <style lang="scss">
@@ -24,6 +38,10 @@ export default class App extends Vue {}
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
 }
 </style>
