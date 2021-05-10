@@ -1,7 +1,12 @@
 <template>
   <div class="currency-selector">
     <div class="currency-selector__selected">
-      {{ selectedCurrencies }}
+      <SelectedCurrencyBox
+        v-for="selectedCurrency in selectedCurrencies"
+        :key="selectedCurrency"
+        :currency="selectedCurrency"
+        @remove="selectCurrency(selectedCurrency)"
+      />
     </div>
     <div class="currency-selector__list">
       <CurrencyBox
@@ -19,6 +24,7 @@
 import { PropType } from "vue";
 import { Vue } from "vue-property-decorator";
 import CurrencyBox from "./CurrencyBox.vue";
+import SelectedCurrencyBox from "./SelectedCurrencyBox.vue";
 
 const selectedCurrencies: string[] = [];
 
@@ -26,6 +32,7 @@ export default Vue.extend({
   name: "CurrencySelector",
   components: {
     CurrencyBox,
+    SelectedCurrencyBox,
   },
   props: {
     currencies: Array as PropType<Array<string>>,
@@ -38,7 +45,7 @@ export default Vue.extend({
       return this.selectedCurrencies.includes(currency);
     },
     selectCurrency(currency: string): void {
-      const index = this.selectedCurrencies.indexOf(currency, 0);
+      const index = this.selectedCurrencies.indexOf(currency);
 
       if (index > -1) {
         this.selectedCurrencies.splice(index, 1);
@@ -56,13 +63,27 @@ export default Vue.extend({
   border: 1px rgba(0, 0, 0, 0.4) solid;
   border-radius: 5px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.15);
-  max-width: 800px;
+  max-width: 450px;
+  width: 100%;
   padding: 15px;
+
+  &__selected {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px 10px;
+    margin-bottom: 35px;
+  }
 
   &__list {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr;
     gap: 10px 5px;
+  }
+
+  @media screen and (min-width: 400px) {
+    &__list {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 }
 </style>
