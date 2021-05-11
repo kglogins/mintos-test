@@ -65,19 +65,19 @@ export default Vue.extend({
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.15);
   max-width: 450px;
   width: 100%;
-  padding: 15px;
+  padding: 20px 15px 15px 15px;
 
   &__selected {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px 10px;
+    gap: 15px 15px;
     margin-bottom: 35px;
   }
 
   &__list {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px 5px;
+    gap: 15px 10px;
   }
 
   @media screen and (min-width: 400px) {
