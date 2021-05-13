@@ -9,13 +9,13 @@ describe("CurrencySelector.vue", () => {
       propsData: { currencies },
     });
 
-    expect(wrapper.find('.currency-box')).toBeTruthy();
+    expect(wrapper.find(".currency-box")).toBeTruthy();
   });
 
   it("have no selected currency at the beginning", () => {
     const wrapper = mount(CurrencySelector, {
-      propsData: { currencies }
-    })
+      propsData: { currencies },
+    });
 
     expect(wrapper.findAll(".currency-box-selected").length).toEqual(0);
   });
@@ -35,7 +35,7 @@ describe("CurrencySelector.vue", () => {
       propsData: { currencies },
     });
 
-    wrapper.setData({ selectedCurrencies: ["pln"] })
+    wrapper.setData({ selectedCurrencies: ["pln"] });
 
     await wrapper.find(".currency-box--selected").trigger("click");
 
